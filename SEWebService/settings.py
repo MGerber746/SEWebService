@@ -14,14 +14,15 @@ import os
 import dj_database_url
 
 
-from SEWebService.production import *
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 's9%%y&myi0%596f&-^k095px^a+ocqh#04&1x%x@+lk+1oq-)s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
