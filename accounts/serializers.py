@@ -1,21 +1,21 @@
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 
+from accounts.constants import USER_ACCOUNT_TYPE_CHOICES
 from accounts.models import UserAccount
 
 
-class RegisterSerializer(serializers.ModelSerializer):
+class AccountSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(allow_blank=False, style={'input_type': 'password'})
     confirm_password = serializers.CharField(allow_blank=False,
                                              style={'input_type': 'password'},
                                              write_only=True)
-    password = serializers.CharField(allow_blank=False, style={'input_type': 'password'})
 
     class Meta:
         model = UserAccount
-        # fields = '__all__'
-        fields = ('first_name', 'last_name', 'email', 'username', 'password', 'confirm_password',)
+        fields = '__all__'
         write_only_fields = ('password', 'confirm_password',)
-        read_only_fields = ('is_staff', 'is_superuser', 'is_active', 'date_joined',)
+        read_only_fields = ('is_staff', 'is_superuser', 'is_active', 'date_joined', 'user_permissions', 'last_login', 'groups')
 
     def validate(self, attrs):
         if attrs['password'] != attrs.pop('confirm_password'):
@@ -30,6 +30,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             email=validated_data['email'],
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
+            type=USER_ACCOUNT_TYPE_CHOICES[0][0],
         )
         user.set_password(validated_data['password'])
         user.save()

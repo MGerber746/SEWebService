@@ -1,16 +1,9 @@
-from django.conf.urls import url, include
-
-from rest_framework.routers import DefaultRouter
+from rest_framework.routers import SimpleRouter
 
 from accounts import views
 
 
 # Create a router and register our viewsets with it
-router = DefaultRouter()
-# router.register(r'register', views.RegisterViewSet)
-
-
-urlpatterns = [
-    url(r'^', include(router.urls)),
-    url(r'^register/$', views.RegisterViewSet.as_view(), name='register'),
-]
+router = SimpleRouter()
+router.register(r'accounts', views.AccountViewSet)
+urlpatterns = router.urls
