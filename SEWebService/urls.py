@@ -11,6 +11,9 @@ router = DefaultRouter()
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^', include('accounts.urls')),
+    url(r'^', include('classes.urls')),
+    url(r'^', include('students.urls')),
+    url(r'^', include('teachers.urls')),
     url(r'^schema/$', schema_view),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'api-token-auth/', views.obtain_auth_token),

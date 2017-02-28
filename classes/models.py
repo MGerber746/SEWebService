@@ -2,5 +2,6 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
-class Student(models.Model):
-    user = models.ForeignKey(User)
+class Class(models.Model):
+    teacher = models.ForeignKey('teachers.Teacher')
+    name = models.CharField(max_length=100)

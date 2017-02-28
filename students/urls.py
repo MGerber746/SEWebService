@@ -1,9 +1,9 @@
 from rest_framework.routers import SimpleRouter
 
-from teachers import views
+from students import views
 
 
 # Create a router and register our viewsets with it
 router = SimpleRouter()
-router.register(r'teachers', views.TeacherViewSet)
+router.register(r'students', views.StudentViewSet)
 urlpatterns = router.urls

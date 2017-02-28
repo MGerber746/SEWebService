@@ -1,9 +1,9 @@
 from rest_framework import viewsets
 
-from teachers.models import Teacher
-from teachers.serializers import TeacherSerializer
+from students.models import Student
+from students.serializers import StudentSerializer
 
 
-class TeacherViewSet(viewsets.ModelViewSet):
-    queryset = Teacher.objects.all()
-    serializer_class = TeacherSerializer
+class StudentViewSet(viewsets.ModelViewSet):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer

@@ -1,8 +1,7 @@
+from django.contrib.auth.models import User
+
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
-
-from accounts.constants import USER_ACCOUNT_TYPE_CHOICES
-from accounts.models import UserAccount
 
 
 class AccountSerializer(serializers.ModelSerializer):
@@ -12,7 +11,7 @@ class AccountSerializer(serializers.ModelSerializer):
                                              write_only=True)
 
     class Meta:
-        model = UserAccount
+        model = User
         fields = '__all__'
         write_only_fields = ('password', 'confirm_password',)
         read_only_fields = ('is_staff', 'is_superuser', 'is_active', 'date_joined', 'user_permissions', 'last_login', 'groups')
@@ -25,12 +24,11 @@ class AccountSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         # call set_password on user object. Without this
         # the password will be stored in plain text.
-        user = UserAccount.objects.create(
+        user = User.objects.create(
             username=validated_data['username'],
             email=validated_data['email'],
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
-            type=USER_ACCOUNT_TYPE_CHOICES[0][0],
         )
         user.set_password(validated_data['password'])
         user.save()

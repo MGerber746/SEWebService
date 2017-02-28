@@ -43,7 +43,10 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 
     # apps
-    'accounts',
+    'classes',
+    'students',
+    'teachers',
+    'utils',
 ]
 
 REST_FRAMEWORK = {

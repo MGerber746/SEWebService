@@ -1,9 +1,18 @@
-from rest_framework import viewsets
+from django.contrib.auth.models import User
 
-from accounts import serializers
-from accounts.models import UserAccount
+from rest_framework import viewsets
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication
+from rest_framework.authtoken.models import Token
+from rest_framework.permissions import IsAuthenticated
+
+from accounts.serializers import AccountSerializer
 
 
 class AccountViewSet(viewsets.ModelViewSet):
-    queryset = UserAccount.objects.all()
-    serializer_class = serializers.AccountSerializer
+    authentication_classes = (TokenAuthentication, SessionAuthentication,)
+    permission_classes = (IsAuthenticated,)
+    queryset = User.objects.all()
+    serializer_class = AccountSerializer
+
+    def get_serializer_context(self):
+        return {'token_id', Token.objects.get(user=self.request.user).pk}
