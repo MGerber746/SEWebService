@@ -1,22 +1,29 @@
 from django.contrib.auth.models import User
 
-from rest_framework import generics
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
+from rest_framework import viewsets
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication
+from rest_framework.authtoken.models import Token
+from rest_framework.permissions import IsAuthenticated
 
-from accounts.serializers import RegisterSerializer
+from accounts import models as account_models
+from accounts import serializers as account_serializers
 
 
-class RegisterViewSet(generics.CreateAPIView):
+class AccountViewSet(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication, SessionAuthentication,)
+    permission_classes = (IsAuthenticated,)
     queryset = User.objects.all()
-    serializer_class = RegisterSerializer
-    permission_classes = (AllowAny,)
+    serializer_class = account_serializers.AccountSerializer
 
-    # Redefine post so we do not return the data when a user is created
-    def post(self, request, *args, **kwargs):
-        serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+    def get_serializer_context(self):
+        return {'token_id', Token.objects.get(user=self.request.user).pk}
+
+
+class StudentViewSet(viewsets.ModelViewSet):
+    queryset = account_models.Student.objects.all()
+    serializer_class = account_serializers.StudentSerializer
+
+
+class TeacherViewSet(viewsets.ModelViewSet):
+    queryset = account_models.Teacher.objects.all()
+    serializer_class = account_serializers.TeacherSerializer
