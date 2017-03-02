@@ -2,7 +2,7 @@ from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 
 from classes.models import Class
-from teachers.models import Teacher
+from accounts.models import Teacher
 
 
 class ClassSerializer(serializers.ModelSerializer):

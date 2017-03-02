@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 
+from accounts import models as account_models
+
 
 class AccountSerializer(serializers.ModelSerializer):
     password = serializers.CharField(allow_blank=False, style={'input_type': 'password'})
@@ -35,3 +37,25 @@ class AccountSerializer(serializers.ModelSerializer):
         # After saving the user, create a token for that user.
         Token.objects.create(user=user)
         return user
+
+
+class StudentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = account_models.Student
+        fields = '__all__'
+
+    def validate(self, attrs):
+        token = Token.objects.get(pk=self.context.get('token_id'))
+        attrs['user'] = token.user
+        return attrs
+
+
+class TeacherSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = account_models.Teacher
+        fields = '__all__'
+
+    def validate(self, attrs):
+        token = Token.objects.get(pk=self.context.get('token_id'))
+        attrs['user'] = token.user
+        return attrs

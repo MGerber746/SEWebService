@@ -4,4 +4,8 @@ from django.db import models
 
 class Student(models.Model):
     user = models.ForeignKey(User)
-    current_class = models.ForeignKey('classes.Class')
+
+
+class Teacher(models.Model):
+    user = models.ForeignKey(User)
+    school_name = models.CharField(max_length=100)
