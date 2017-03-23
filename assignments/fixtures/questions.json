@@ -1,0 +1,29 @@
+[
+  {
+    "model": "assignments.Question",
+    "pk": 1,
+    "fields": {
+      "question": "2 - 2",
+      "answer": "0",
+      "game_type": 1
+    }
+  },
+  {
+    "model": "assignments.Question",
+    "pk": 2,
+    "fields": {
+      "question": "5 - 3",
+      "answer": "2",
+      "game_type": 1
+    }
+  },
+  {
+    "model": "assignments.Question",
+    "pk": 3,
+    "fields": {
+      "question": "7 - 3",
+      "answer": "4",
+      "game_type": 1
+    }
+  }
+]

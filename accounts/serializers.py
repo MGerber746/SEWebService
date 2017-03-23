@@ -58,4 +58,6 @@ class TeacherSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         token = Token.objects.get(pk=self.context.get('token_id'))
         attrs['user'] = token.user
+        if account_models.Teacher.objects.filter(pk=attrs['user'].pk) == 0:
+            raise serializers.ValidationError("You must be a teacher to access this endpoint")
         return attrs

@@ -1,0 +1,10 @@
+[
+  {
+    "model": "games.Game",
+    "pk": 1,
+    "fields": {
+      "name": "Balloon Pop",
+      "math_type": "Subtraction"
+    }
+  }
+]
