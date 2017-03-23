@@ -1,0 +1,29 @@
+[
+  {
+    "model": "assignments.Assignment",
+    "pk": 1,
+    "fields": {
+      "name": "Homework 1",
+      "teacher": 1,
+      "questions": [1,2,3]
+    }
+  },
+  {
+    "model": "assignments.Assignment",
+    "pk": 2,
+    "fields": {
+      "name": "Homework 2",
+      "teacher": 1,
+      "questions": [1,2,3]
+    }
+  },
+  {
+    "model": "assignments.Assignment",
+    "pk": 3,
+    "fields": {
+      "name": "Homework 3",
+      "teacher": 1,
+      "questions": [1,2,3]
+    }
+  }
+]

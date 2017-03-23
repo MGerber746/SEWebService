@@ -1,13 +1,14 @@
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 
-from classes.models import Class
 from accounts.models import Teacher
+from classes.models import Class
 
 
 class ClassSerializer(serializers.ModelSerializer):
     class Meta:
         model = Class
+        depth = 3
         fields = '__all__'
 
     def validate(self, attrs):
