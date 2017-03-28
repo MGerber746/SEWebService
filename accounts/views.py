@@ -20,6 +20,14 @@ class StudentViewSet(viewsets.ModelViewSet):
     queryset = account_models.Student.objects.all()
     serializer_class = account_serializers.StudentSerializer
 
+    @list_route(['get'], authentication_classes=[TokenAuthentication],
+                permission_classes=[IsAuthenticated], url_path="get-classes")
+    def get_classes(self, request):
+        student = account_models.Student.objects.get(user=request.user)
+        classes = student.class_set.all()
+        serializer = class_serializers.ClassSerializer(classes, many=True)
+        return Response(serializer.data)
+
 
 class TeacherViewSet(viewsets.ModelViewSet):
     queryset = account_models.Teacher.objects.all()
