@@ -1,11 +1,16 @@
-from rest_framework.routers import SimpleRouter
+from django.conf.urls import url, include
+
+from rest_framework.routers import DefaultRouter
 
 from accounts import views
 
 
 # Create a router and register our viewsets with it
-router = SimpleRouter()
-router.register(r'accounts', views.AccountViewSet)
-router.register(r'students', views.StudentViewSet)
-router.register(r'teachers', views.TeacherViewSet)
-urlpatterns = router.urls
+router = DefaultRouter()
+# router.register(r'register', views.RegisterViewSet)
+
+
+urlpatterns = [
+    url(r'^', include(router.urls)),
+    url(r'^register/$', views.RegisterViewSet.as_view(), name='register'),
+]
