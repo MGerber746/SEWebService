@@ -1,22 +1,42 @@
 from django.contrib.auth.models import User
 
-from rest_framework import generics
-from rest_framework import status
+from rest_framework import viewsets
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.decorators import list_route
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
 
-from accounts.serializers import RegisterSerializer
+from accounts import models as account_models
+from accounts import serializers as account_serializers
+from classes import serializers as class_serializers
 
 
-class RegisterViewSet(generics.CreateAPIView):
+class AccountViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
-    serializer_class = RegisterSerializer
-    permission_classes = (AllowAny,)
+    serializer_class = account_serializers.AccountSerializer
 
-    # Redefine post so we do not return the data when a user is created
-    def post(self, request, *args, **kwargs):
-        serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+
+class StudentViewSet(viewsets.ModelViewSet):
+    queryset = account_models.Student.objects.all()
+    serializer_class = account_serializers.StudentSerializer
+
+    @list_route(['get'], authentication_classes=[TokenAuthentication],
+                permission_classes=[IsAuthenticated], url_path="get-classes")
+    def get_classes(self, request):
+        student = account_models.Student.objects.get(user=request.user)
+        classes = student.class_set.all()
+        serializer = class_serializers.ClassSerializer(classes, many=True)
+        return Response(serializer.data)
+
+
+class TeacherViewSet(viewsets.ModelViewSet):
+    queryset = account_models.Teacher.objects.all()
+    serializer_class = account_serializers.TeacherSerializer
+
+    @list_route(['get'], authentication_classes=[TokenAuthentication],
+                permission_classes=[IsAuthenticated], url_path="get-classes")
+    def get_classes(self, request):
+        teacher = account_models.Teacher.objects.get(user=request.user)
+        classes = teacher.class_set.all()
+        serializer = class_serializers.ClassSerializer(classes, many=True)
+        return Response(serializer.data)
