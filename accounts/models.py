@@ -2,8 +2,16 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
-from accounts.constants import USER_ACCOUNT_TYPE_CHOICES
+class Student(models.Model):
+    user = models.ForeignKey(User)
+
+    def __str__(self):
+        return self.user.get_full_name()
 
 
-class UserAccount(User):
-    type = models.CharField(max_length=10, choices=USER_ACCOUNT_TYPE_CHOICES)
+class Teacher(models.Model):
+    user = models.ForeignKey(User)
+    school_name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.user.get_full_name()
