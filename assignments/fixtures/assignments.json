@@ -5,7 +5,8 @@
     "fields": {
       "name": "Homework 1",
       "teacher": 1,
-      "questions": [1,2,3,4,5,6,7,8,9,10]
+      "questions": [1,2,3,4,5,6,7,8,9,10],
+      "game_type": 1
     }
   },
   {
@@ -14,7 +15,8 @@
     "fields": {
       "name": "Homework 2",
       "teacher": 1,
-      "questions": [1,2,3,4,5,6,7,8,9,10]
+      "questions": [1,2,3,4,5,6,7,8,9,10],
+      "game_type": 1
     }
   },
   {
@@ -23,7 +25,8 @@
     "fields": {
       "name": "Homework 3",
       "teacher": 1,
-      "questions": [1,2,3,4,5,6,7,8,9,10]
+      "questions": [1,2,3,4,5,6,7,8,9,10],
+      "game_type": 1
     }
   }
 ]

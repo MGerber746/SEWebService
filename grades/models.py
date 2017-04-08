@@ -5,6 +5,7 @@ from django.db import models
 class Grade(models.Model):
     percent = models.DecimalField(max_digits=5, decimal_places=2)
     student = models.ForeignKey('accounts.Student')
+    assignment = models.ForeignKey('assignments.Assignment')
 
     def __str__(self):
-        return "{} {}".format(self.student.user.get_full_name(), self.percent)
+        return "{} {}".format(self.student.user.get_full_name(), self.percent, self.assignment)
