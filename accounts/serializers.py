@@ -43,21 +43,11 @@ class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = account_models.Student
         fields = '__all__'
-
-    def validate(self, attrs):
-        token = Token.objects.get(pk=self.context.get('token_id'))
-        attrs['user'] = token.user
-        return attrs
+        depth = 1
 
 
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = account_models.Teacher
         fields = '__all__'
-
-    def validate(self, attrs):
-        token = Token.objects.get(pk=self.context.get('token_id'))
-        attrs['user'] = token.user
-        if account_models.Teacher.objects.filter(pk=attrs['user'].pk) == 0:
-            raise serializers.ValidationError("You must be a teacher to access this endpoint")
-        return attrs
+        depth = 1
