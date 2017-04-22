@@ -41,6 +41,9 @@ class StudentViewSet(viewsets.ModelViewSet):
     queryset = account_models.Student.objects.all()
     serializer_class = account_serializers.StudentSerializer
 
+    def get_serializer_context(self):
+        return {'request': self.request}
+
     @list_route(methods=['get'], authentication_classes=[TokenAuthentication],
                 permission_classes=[IsAuthenticated], url_path="user-info")
     def user_info(self, request):
@@ -53,15 +56,21 @@ class StudentViewSet(viewsets.ModelViewSet):
     @list_route(['get'], authentication_classes=[TokenAuthentication],
                 permission_classes=[IsAuthenticated], url_path="classes")
     def classes(self, request):
-        student = account_models.Student.objects.get(user=request.user)
-        classes = student.class_set.all()
-        serializer = class_serializers.ClassSerializer(classes, many=True)
-        return Response(serializer.data)
+        if account_models.Student.objects.filter(user=request.user):
+            student = account_models.Student.objects.get(user=request.user)
+            classes = student.class_set.all()
+            serializer = class_serializers.ClassSerializer(classes, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 class TeacherViewSet(viewsets.ModelViewSet):
     queryset = account_models.Teacher.objects.all()
     serializer_class = account_serializers.TeacherSerializer
+
+    def get_queryset(self):
+        return self.request.user.teacher_set.all()
 
     @list_route(methods=['get'], authentication_classes=[TokenAuthentication],
                 permission_classes=[IsAuthenticated], url_path="user-info")
@@ -75,7 +84,10 @@ class TeacherViewSet(viewsets.ModelViewSet):
     @list_route(['get'], authentication_classes=[TokenAuthentication],
                 permission_classes=[IsAuthenticated], url_path="classes")
     def classes(self, request):
-        teacher = account_models.Teacher.objects.get(user=request.user)
-        classes = teacher.class_set.all()
-        serializer = class_serializers.ClassSerializer(classes, many=True)
-        return Response(serializer.data)
+        if account_models.Teacher.objects.filter(user=request.user):
+            teacher = account_models.Teacher.objects.get(user=request.user)
+            classes = teacher.class_set.all()
+            serializer = class_serializers.ClassSerializer(classes, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)

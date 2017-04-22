@@ -12,6 +12,6 @@ class ClassSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def validate(self, attrs):
-        token = Token.objects.get(pk=self.context.get('token_id'))
-        attrs['teacher'] = Teacher.objects.get(user=token.user)
+        request = self.context.get('request')
+        attrs['teacher'] = Teacher.objects.get(user=request.user)
         return attrs
