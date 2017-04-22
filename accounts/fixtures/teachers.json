@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "user": 2,
-      "school_name": "Test School"
+      "students": [1,2]
     }
   }
 ]
