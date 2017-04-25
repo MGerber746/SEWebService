@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'accounts',
     'assignments',
     'classes',
-    'games',
     'grades',
     'utils',
 ]
