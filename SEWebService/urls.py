@@ -13,7 +13,6 @@ urlpatterns = [
     url(r'^', include('accounts.urls')),
     url(r'^', include('assignments.urls')),
     url(r'^', include('classes.urls')),
-    url(r'^', include('games.urls')),
     url(r'^', include('grades.urls')),
     url(r'^schema/$', schema_view),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),

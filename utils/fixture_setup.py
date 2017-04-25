@@ -11,7 +11,6 @@ def fixtures_setup():
     execute_from_command_line(["manage.py", "loaddata", "users.json"])
     execute_from_command_line(["manage.py", "loaddata", "students.json"])
     execute_from_command_line(["manage.py", "loaddata", "teachers.json"])
-    execute_from_command_line(["manage.py", "loaddata", "games.json"])
     execute_from_command_line(["manage.py", "loaddata", "questions.json"])
     execute_from_command_line(["manage.py", "loaddata", "assignments.json"])
     execute_from_command_line(["manage.py", "loaddata", "classes.json"])
