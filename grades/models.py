@@ -9,4 +9,5 @@ class Grade(models.Model):
     assignment = models.ForeignKey('assignments.Assignment')
 
     def __str__(self):
-        return "{} {}".format(self.student.user.get_full_name(), self.percent, self.assignment)
+        return "{} {} {}".format(self.student.user.get_full_name(), self.assignment,
+                                 (self.correct_answers / self.total_questions))
