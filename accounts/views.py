@@ -63,7 +63,7 @@ class StudentViewSet(viewsets.ModelViewSet):
             serializer = class_serializers.ClassSerializer(classes, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 
 class TeacherViewSet(viewsets.ModelViewSet):
@@ -91,7 +91,7 @@ class TeacherViewSet(viewsets.ModelViewSet):
             serializer = class_serializers.ClassSerializer(classes, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
 
     @list_route(['get'], authentication_classes=[TokenAuthentication],
                 permission_classes=[IsAuthenticated], url_path="assignments")
