@@ -4,8 +4,7 @@
     "pk": 1,
     "fields": {
       "question": "2 - 2",
-      "answer": "0",
-      "game_type": 1
+      "answer": "0"
     }
   },
   {
@@ -13,8 +12,7 @@
     "pk": 2,
     "fields": {
       "question": "5 - 3",
-      "answer": "2",
-      "game_type": 1
+      "answer": "2"
     }
   },
   {
@@ -22,8 +20,7 @@
     "pk": 3,
     "fields": {
       "question": "7 - 3",
-      "answer": "4",
-      "game_type": 1
+      "answer": "4"
     }
   },
   {
@@ -31,8 +28,7 @@
     "pk": 4,
     "fields": {
       "question": "12 - 11",
-      "answer": "1",
-      "game_type": 1
+      "answer": "1"
     }
   },
   {
@@ -40,8 +36,7 @@
     "pk": 5,
     "fields": {
       "question": "17 - 3",
-      "answer": "14",
-      "game_type": 1
+      "answer": "14"
     }
   },
   {
@@ -49,8 +44,7 @@
     "pk": 6,
     "fields": {
       "question": "14 - 4",
-      "answer": "10",
-      "game_type": 1
+      "answer": "10"
     }
   },
   {
@@ -58,8 +52,7 @@
     "pk": 7,
     "fields": {
       "question": "16 - 7",
-      "answer": "9",
-      "game_type": 1
+      "answer": "9"
     }
   },
   {
@@ -67,8 +60,7 @@
     "pk": 8,
     "fields": {
       "question": "19 - 11",
-      "answer": "8",
-      "game_type": 1
+      "answer": "8"
     }
   },
   {
@@ -76,8 +68,7 @@
     "pk": 9,
     "fields": {
       "question": "15 - 10",
-      "answer": "5",
-      "game_type": 1
+      "answer": "5"
     }
   },
   {
@@ -85,8 +76,7 @@
     "pk": 10,
     "fields": {
       "question": "6 - 3",
-      "answer": "3",
-      "game_type": 1
+      "answer": "3"
     }
   }
 ]

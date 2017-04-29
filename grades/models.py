@@ -3,8 +3,11 @@ from django.db import models
 
 
 class Grade(models.Model):
-    percent = models.DecimalField(max_digits=5, decimal_places=2)
-    student = models.ForeignKey('accounts.Student')
+    total_questions = models.IntegerField()
+    correct_answers = models.IntegerField()
+    student = models.ForeignKey('accounts.Student', null=True, blank=True)
+    assignment = models.ForeignKey('assignments.Assignment')
 
     def __str__(self):
-        return "{} {}".format(self.student.user.get_full_name(), self.percent)
+        return "{} {} {}".format(self.student.user.get_full_name(), self.assignment,
+                                 (self.correct_answers / self.total_questions))

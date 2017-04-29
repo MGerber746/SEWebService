@@ -4,6 +4,7 @@
     "pk": 1,
     "fields": {
       "name": "Homework 1",
+      "math_type": "Addition",
       "teacher": 1,
       "questions": [1,2,3,4,5,6,7,8,9,10]
     }
@@ -13,6 +14,7 @@
     "pk": 2,
     "fields": {
       "name": "Homework 2",
+      "math_type": "Addition",
       "teacher": 1,
       "questions": [1,2,3,4,5,6,7,8,9,10]
     }
@@ -22,6 +24,7 @@
     "pk": 3,
     "fields": {
       "name": "Homework 3",
+      "math_type": "Addition",
       "teacher": 1,
       "questions": [1,2,3,4,5,6,7,8,9,10]
     }

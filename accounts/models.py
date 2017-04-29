@@ -11,7 +11,7 @@ class Student(models.Model):
 
 class Teacher(models.Model):
     user = models.ForeignKey(User)
-    school_name = models.CharField(max_length=100)
+    students = models.ManyToManyField('accounts.Student')
 
     def __str__(self):
         return self.user.get_full_name()
